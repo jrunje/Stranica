@@ -23,7 +23,7 @@ const Naslovnica = () => {
     fetchPage();
   }, []);
 
-  if(!page) return <p>Učitavanje...</p>;
+  if(!page) return <p>Učitavanjej...</p>;
 
   return (
     <>
