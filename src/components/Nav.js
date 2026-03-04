@@ -1,119 +1,57 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'; // Uvozimo komponente
+import logo from "../img/runje-logo.png";
+import "./Nav.css";
 
-const Nav = () => {
+const Navigation = () => {
   const location = useLocation();
-  const [name, setName] = useState(null);
-
-  useEffect(() => {
-    const user = localStorage.getItem("username");
-    if (user) setName(user);
-  }, []);
-
-  if (location.pathname === "/signin") {
-    return;
-  }
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    //window.location.reload();
-    setName(null);
-  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <Link className="navbar-brand" to="/">
-          <img src="img/header/logo.svg" alt="logo" height="12" />
-        </Link>
+    <Navbar collapseOnSelect expand="lg" variant="dark" className="py-3" style={{ backgroundColor: "#111" }}>
+      <Container>
+        {/* Logo */}
+        <Navbar.Brand as={Link} to="/">
+          <img src={logo} alt="Runje Automobili" height="45" />
+        </Navbar.Brand>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        {/* Hamburger gumb - react-bootstrap se brine za funkcionalnost */}
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="border-0" />
 
-        <div className="navbar-collapse collapse " id="mainNavbar">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-uppercase">
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/">
-                Naslovnica
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/o-nama">
-                O nama
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/usluge">
-                Usluge
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/blog">
-                Blog
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/kategorije">
-                Kategorije
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/kontakt">
-                Kontakt
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-end" to="/lokali">
-                Lokali
-              </Link>
-            </li>
-            {name ? (
-              <li className="nav-item">
-                <Link className="nav-link text-end" to="/admin">
-                  Admin
-                </Link>
-              </li>
-            ) : (
-              ""
-            )}
-          </ul>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto text-uppercase fw-semibold align-items-center">
+            
+            {/* 1. Ponuda vozila Dropdown */}
+            <NavDropdown title="Ponuda vozila" id="ponuda-dropdown" className="px-2">
+              <NavDropdown.Item as={Link} to="/vozila">Sva vozila</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/vozila-akcija">Vozila na akciji</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/vozila-u-dolasku">Vozila u dolasku</NavDropdown.Item>
+            </NavDropdown>
 
-          <ul className="navbar-nav ms-auto align-items-center">
-            <li className="nav-item">
-              {name ? (
-                <button onClick={logout} className="btn btn-primary">
-                  Dobrodošli, {name}
-                </button>
-              ) : (
-                <Link className="nav-link" to="/signin" title="Sign in">
-                  <img
-                    src="img/header/user.svg"
-                    alt="Sign in"
-                    className="icon-sm"
-                  />
-                </Link>
-              )}
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" href="/cart" title="Cart">
-                <img src="img/header/cart.svg" alt="Cart" className="icon-lg" />
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            {/* 2. Dodatne usluge Dropdown */}
+            <NavDropdown title="Dodatne usluge" id="usluge-dropdown" className="px-2">
+              <NavDropdown.Item as={Link} to="/uvoz-vozila">Uvoz vozila</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/otkup-vozila">Otkup vozila</NavDropdown.Item>
+            </NavDropdown>
+
+            <Nav.Link as={Link} to="/jamstvo" className="px-2">Jamstvo</Nav.Link>
+            <Nav.Link as={Link} to="/novosti" className="px-2">Novosti</Nav.Link>
+            <Nav.Link as={Link} to="/o-nama" className="px-2">O nama</Nav.Link>
+            <Nav.Link as={Link} to="/kontakt" className="px-2">Kontakt</Nav.Link>
+
+            {/* WhatsApp Ikona */}
+            <Nav.Link 
+              href="https://wa.me/385917394888" 
+              target="_blank" 
+              className="ms-lg-4 p-0 whatsapp-link"
+              style={{ color: "#d4af37" }}
+            >
+              <i className="bi bi-whatsapp fs-3 whatsapp-icon"></i>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Nav;
+export default Navigation;

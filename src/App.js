@@ -12,9 +12,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Naslovnica />} />
-        
-        
-
+    
       </Routes>
       <Footer />
     </BrowserRouter>
