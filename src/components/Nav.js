@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'; // Uvozimo komponente
-import logo from "../img/runje-logo.png";
+import logo from "../img/runje-logo.svg";
 import "./Nav.css";
 
 const Navigation = () => {

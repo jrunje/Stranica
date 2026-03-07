@@ -76,3 +76,15 @@
 
 /* Uklanja strelicu pored dropdowna ako želiš (opcionalno) */
 /* .dropdown-toggle::after { display: none; } */
+
+
+.logo img {
+  height: 60px;
+  transition: 0.4s ease;
+}
+
+.logo {
+  background: linear-gradient(135deg, #d4af37, #f5d76e, #b8860b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
