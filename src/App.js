@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'/jrunje'}>
       <Nav />
       <Routes>
         <Route path="/" element={<Naslovnica />} />

@@ -1,5 +1,6 @@
 {
   "name": "autosalon",
+  "homepage": "https://front2.edukacija.online/jrunje",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,6 +16,7 @@
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.1",
     "react-scripts": "5.0.1",
+    "swiper": "^12.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
