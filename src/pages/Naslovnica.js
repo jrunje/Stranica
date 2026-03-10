@@ -3,6 +3,9 @@ import Loader from "../components/Loader";
 import HeroSection from "../components/HeroSection";
 import FilterVozila from "../components/FilterVozila";
 import VozilaSwiper from "../components/VozilaSwiper";
+import DodatneUsluge from '../components/DodatneUsluge';
+import PovjerenjeSection from '../components/PovjerenjeSection';
+import KontaktMapaSection from '../components/KontaktMapaSection';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -49,15 +52,12 @@ const Naslovnica = () => {
         <VozilaSwiper vozila={vozila} />
       </div>
 
-      {/* 4. DODATNI PROSTOR DO FOOTERA */}
-      <div className="py-5">
-        <div className="container text-center">
-          <hr className="text-secondary opacity-25" />
-          <p className="text-muted small mt-5 text-uppercase letter-spacing-2">
-            Runje Automobili — Vaš partner u odabiru najboljih vozila
-          </p>
-        </div>
-      </div>
+      <DodatneUsluge />
+      <PovjerenjeSection /> 
+      <KontaktMapaSection /> 
+
+  
+      
 
     </div>
   );
