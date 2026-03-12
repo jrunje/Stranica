@@ -1,0 +1,111 @@
+/* ==========================================
+   1. OSNOVA I HERO PREKLAPANJE
+   ========================================== */
+.jamstvo-page-wrapper {
+    background-color: #000;
+    min-height: 100vh;
+}
+
+.jamstvo-content-card {
+    background-color: #111;
+    border: 1px solid #222;
+    padding: 60px;
+    border-radius: 15px;
+    margin-top: -80px; /* Preklapanje preko Hero sekcije */
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================
+   2. WP CONTENT RENDERER (Tekst iz WordPressa)
+   ========================================== */
+.wp-content-render {
+    color: #eee;
+    line-height: 1.8;
+    font-size: 1.15rem;
+}
+
+/* Naslovi unutar teksta */
+.wp-content-render h2, 
+.wp-content-render h3 {
+    color: #ffc107;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Liste (Kvačice) */
+.wp-content-render ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.wp-content-render li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 15px;
+}
+
+.wp-content-render li::before {
+    content: "\F272"; /* Bootstrap icon check-circle */
+    font-family: "bootstrap-icons";
+    position: absolute;
+    left: 0;
+    color: #ffc107;
+}
+
+/* ==========================================
+   3. FIX ZA KONTAKT (Linkovi i Ikone)
+   ========================================== */
+
+/* Uklanja plavu boju sa svih linkova u članku (uključujući mail) */
+.wp-content-render a {
+    color: #fff !important;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.wp-content-render a:hover {
+    color: #ffc107 !important;
+}
+
+/* Automatska ikona za MAIL */
+.wp-content-render a[href^="mailto:"]::before {
+    content: "\F32F"; /* Bootstrap icon envelope */
+    font-family: "bootstrap-icons";
+    margin-right: 12px;
+    color: #ffc107;
+    vertical-align: middle;
+}
+
+/* Automatska ikona za TELEFON */
+/* Napomena: U WP-u stavi link na broj u formatu tel:+385... */
+.wp-content-render a[href^="tel:"]::before {
+    content: "\F5C1"; /* Bootstrap icon telephone */
+    font-family: "bootstrap-icons";
+    margin-right: 12px;
+    color: #ffc107;
+    vertical-align: middle;
+}
+
+/* ==========================================
+   4. RESPONSIVE
+   ========================================== */
+@media (max-width: 991px) {
+    .jamstvo-content-card {
+        padding: 40px;
+        margin-top: -50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .jamstvo-content-card {
+        padding: 25px;
+        margin-top: -30px;
+        border-radius: 0;
+    }
+}

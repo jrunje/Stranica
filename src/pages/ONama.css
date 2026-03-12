@@ -1,0 +1,62 @@
+.o-nama-page-wrapper {
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.about-content-card {
+    background-color: #111;
+    border: 1px solid #222;
+    padding: 60px;
+    border-radius: 20px;
+    margin-top: -80px; /* Elegantno preklapanje preko Hero slike */
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+.gold-text {
+    color: #ffc107;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Stilovi za WP sadržaj */
+.wp-about-render {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.wp-about-render h2, 
+.wp-about-render h3 {
+    color: #ffc107;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.wp-about-render p {
+    margin-bottom: 25px;
+}
+
+/* UKLANJANJE PLAVE BOJE - Svi linkovi u "O nama" su zlatni */
+.wp-about-render a {
+    color: #ffc107;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.wp-about-render a:hover {
+    color: #fff;
+    border-bottom: 1px solid #ffc107;
+}
+
+/* Stil za slike ako ih ubaciš unutar WP editora */
+.wp-about-render img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+}

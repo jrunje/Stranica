@@ -1,0 +1,114 @@
+/* ==========================================
+   VOZILO SINGLE - POSEBNI STILOVI
+   ========================================== */
+.single-vehicle-wrapper {
+    background-color: #000;
+}
+
+/* Povratak na ponudu */
+.back-to-offers {
+    color: #888;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.back-to-offers:hover {
+    color: #ffc107;
+}
+
+/* Glavni okvir galerije i informacija */
+.vehicle-main-row {
+    border: 1px solid #222;
+    background-color: #111;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* GALERIJA */
+.main-view-img {
+    width: 100%;
+    height: 500px; /* Ovo fiksira visinu da slike ne bježe kao na tvojoj trećoj slici */
+    object-fit: cover;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.swiper-slide-thumb-active .thumb-img {
+    opacity: 1;
+    border-color: #ffc107;
+}
+
+/* DESNA INFO KARTICA */
+.vehicle-info-card {
+    padding: 30px;
+    background-color: #111;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-tag {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ffc107;
+    margin-bottom: 25px;
+}
+
+/* Specifikacije - LINIJA PO LINIJA */
+.spec-row-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #222;
+}
+
+.spec-row-item .label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.spec-row-item .label i {
+    color: #ffc107;
+    margin-right: 10px;
+}
+
+.spec-row-item .value {
+    color: #fff;
+    font-weight: 500;
+}
+
+/* OPIS VOZILA (Donji dio) */
+.section-title {
+    color: #ffc107;
+    text-transform: uppercase;
+    font-weight: 800;
+    border-left: 4px solid #ffc107;
+    padding-left: 15px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.vehicle-content {
+    color: #ccc;
+    line-height: 1.8;
+}
+
+/* Popravak Swiper strelica da ne budu plave */
+.single-vehicle-wrapper .swiper-button-next,
+.single-vehicle-wrapper .swiper-button-prev {
+    color: #ffc107 !important;
+}

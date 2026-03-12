@@ -38,13 +38,16 @@ const Naslovnica = () => {
       {/* 1. HERO SECTION */}
       {/* Koristimo sliku prvog vozila iz niza kao pozadinu, ili fallback ako niz nekim čudom bude prazan */}
       <HeroSection 
-        stranica={vozila[0]} 
+      tip="home"
+    
         fallback="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop" 
       />
 
       {/* 2. FILTER VOZILA */}
       {/* Ova komponenta se u CSS-u podiže prema gore pomoću negativne margine */}
+      <div className="filter-wrapper">
       <FilterVozila />
+      </div>
 
       {/* 3. IZDVOJENA VOZILA (SWIPER) */}
       {/* Umjesto klasične mreže (row/col), sada koristimo moderan vrtuljak */}

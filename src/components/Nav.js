@@ -23,11 +23,7 @@ const Navigation = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto text-uppercase fw-semibold align-items-center">
             
-            <NavDropdown title="Ponuda vozila" id="ponuda-dropdown" className="px-2">
-              <NavDropdown.Item as={Link} to="/vozila">Sva vozila</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/vozila-akcija">Vozila na akciji</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/vozila-u-dolasku">Vozila u dolasku</NavDropdown.Item>
-            </NavDropdown>
+             <Nav.Link as={Link} to="/vozila" className="px-2">Ponuda vozila</Nav.Link>
 
             <NavDropdown title="Dodatne usluge" id="usluge-dropdown" className="px-2">
               <NavDropdown.Item as={Link} to="/uvoz-vozila">Uvoz vozila</NavDropdown.Item>

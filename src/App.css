@@ -181,36 +181,8 @@ footer .btn-outline-warning:hover {
     letter-spacing: 2px;
 }
 
-/* Stil za filter karticu */
-.filter-card {
-    border-radius: 12px;
-    /* Lagani prijelaz da izgleda dublje */
-    background: linear-gradient(to bottom, #ffffff, #fdfdfd);
-}
 
-/* Stil za labele iznad select polja */
-.filter-card label {
-    letter-spacing: 0.5px;
-    font-size: 0.75rem;
-}
 
-/* Stil za gumb unutar filtera */
-.search-btn {
-    background-color: #111;
-    border: none;
-    transition: 0.3s;
-}
-
-.search-btn:hover {
-    background-color: #d4af37; /* Postaje zlatan na hover */
-    color: #000;
-}
-
-/* Da select polja ne izgledaju previše "obično" */
-.form-select:focus, .form-control:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
-}
 
 /* --- SWIPER SECTION POZADINA --- */
 .swiper-container-wrapper {
@@ -371,5 +343,76 @@ footer .btn-outline-warning:hover {
 @media (max-width: 767px) {
     .kontakt-mapa-section iframe {
         height: 300px;
+    }
+}
+/* Pozicioniranje filtera točno na pola ruba Hero sekcije */
+.filter-container {
+    margin-top: -65px; /* Ova vrijednost ga podiže da "lebdi" na pola */
+    position: relative;
+    z-index: 10;
+    max-width: 1320px; /* Širina prati container kartica ispod */
+}
+
+/* Glavna bijela kartica s balansiranim razmacima */
+.filter-container .main-filter-card {
+    border-radius: 15px;
+    padding: 25px 30px; /* 25px gore/dolje, 30px lijevo/desno za simetriju */
+    background-color: #ffffff;
+    border: none;
+}
+
+/* Osiguravamo da forma koristi punu širinu bez Bootstrapovih negativnih margina */
+.main-filter-card .filter-form-row {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
+/* Labele - smanjen margin-bottom da razmak od vrha bude vizualno jednak razmaku od dna */
+.main-filter-card .filter-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-bottom: 8px; 
+    line-height: 1;
+}
+
+/* Polja i gumb - ista visina (48px) za savršenu vodoravnu liniju */
+.main-filter-card .filter-input,
+.main-filter-card .filter-submit-btn {
+    height: 48px; 
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+/* Stilizacija gumba bez utjecaja Bootstrapa */
+.main-filter-card .filter-submit-btn {
+    width: 100%;
+    background-color: #d4af37;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-filter-card .filter-submit-btn:hover {
+    background-color: #b8952d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Responzivnost za mobitele (da se ne gužva) */
+@media (max-width: 768px) {
+    .filter-container {
+        margin-top: -30px; /* Manji pomak na mobitelu */
+    }
+    .main-filter-card {
+        padding: 20px;
     }
 }

@@ -1,146 +1,187 @@
-/* 1. OSNOVA STRANICE */
+/* ==========================================
+   1. OSNOVA I STRUKTURA (Samo za stranicu Vozila)
+   ========================================== */
 .vozila-page-wrapper {
-  background-color: #000;
-  min-height: 100vh;
-  padding-top: 50px;
-  padding-bottom: 80px;
+    background-color: #000;
+    min-height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 80px;
+    color: #fff;
 }
 
 .main-title {
-  color: #fff;
-  border-left: 5px solid #ffc107;
-  padding-left: 20px;
-  font-weight: 900;
-  text-transform: uppercase;
-  margin-bottom: 40px;
+    color: #fff;
+    border-left: 5px solid #ffc107;
+    padding-left: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 
-/* 2. SIDEBAR FILTERI (Lijeva strana) */
+/* ==========================================
+   2. FILTERI I GUMBI
+   ========================================== */
 .filter-sidebar {
-  background-color: #111;
-  border: 1px solid #333;
-  padding: 25px;
-  border-radius: 12px;
-  /* Maknut position: sticky - sada filter ostaje na vrhu stranice */
-}
-
-.filter-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 6px;
-  display: block;
-  font-weight: 600;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 100%; /* Pusti Bootstrapu da diktira širinu kroz col-lg-3 */
 }
 
 .custom-select {
-  background-color: #000;
-  border: 1px solid #333;
-  color: #fff;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-  border-radius: 6px;
+    background-color: #000;
+    border: 1px solid #333;
+    color: #fff;
+    margin-bottom: 15px;
+    border-radius: 6px;
 }
 
-.custom-select:focus {
-  background-color: #000;
-  color: #fff;
-  border-color: #ffc107;
-  box-shadow: none;
+.status-toggle-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-/* 3. BIJELA KARTICA SA ZLATNIM OBRUBOM */
+.status-btn {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 6px 16px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border-radius: 30px;
+}
+
+.status-btn.active {
+    background-color: #ffc107;
+    color: #000;
+    border-color: #ffc107;
+}
+
+/* ==========================================
+   3. KARTICE VOZILA (VehicleCard.js)
+   ========================================== */
 .vozila-page-wrapper .gold-border-card {
-  background-color: #fff;
-  border: 2px solid #ffc107; 
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
+    background-color: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    transition: all 0.4s ease-in-out;
+    height: 100%;
+    overflow: hidden;
 }
 
 .vozila-page-wrapper .gold-border-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.2);
+    transform: translateY(-8px);
+    border-color: #ffc107;
+    box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15);
 }
 
-.vehicle-img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.vozila-page-wrapper .gold-border-card .card-body {
-  padding: 1.25rem;
-  color: #000;
+.vehicle-img-top-fixed, .vehicle-img {
+    height: 220px !important;
+    object-fit: cover !important;
+    width: 100%;
+    display: block;
 }
 
 .vozila-page-wrapper .gold-border-card h5 {
-  color: #000;
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    transition: 0.3s;
 }
 
-.vozila-page-wrapper .gold-border-card .border-top,
-.vozila-page-wrapper .gold-border-card .border-bottom {
-  border-color: #eee !important;
+.vozila-page-wrapper .gold-border-card:hover h5 {
+    color: #ffc107;
 }
 
-.spec-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #666;
-  font-size: 0.85rem;
-  font-weight: 500;
+.vehicle-card-specs {
+    display: flex;
+    flex-direction: column; 
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.spec-item i {
-  color: #ffc107; 
-  font-size: 1rem;
+.vehicle-card-specs span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff !important;
+    font-size: 0.85rem;
 }
 
-.vozila-page-wrapper .text-warning {
-  color: #ffc107 !important;
-  font-weight: 800;
+.vehicle-card-specs i {
+    color: #ffc107;
+    width: 18px;
+    text-align: center;
 }
 
-.vozila-page-wrapper .btn-warning {
-  background-color: #ffc107;
-  border: none;
-  color: #000;
-  font-weight: 700;
-  padding: 10px;
-  transition: 0.3s;
+.vozila-page-wrapper .card-price {
+    color: #ffc107;
+    font-weight: 900;
+    font-size: 1.3rem;
 }
 
-/* 4. PAGINACIJA (Bez plave boje) */
+/* ==========================================
+   4. PAGINACIJA I RESET
+   ========================================== */
 .pagination-custom {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 10px;
-  margin-top: 60px;
-  padding: 0;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 10px;
+    margin-top: 60px;
 }
 
 .pagination-custom li a {
-  padding: 10px 20px;
-  background: #1a1a1a;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: 0.3s;
+    padding: 8px 16px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .pagination-custom li.active a {
-  background: #ffc107;
-  color: #000;
+    background: #ffc107;
+    color: #000;
+    border-color: #ffc107;
 }
 
-.pagination-custom li a:hover:not(.active) {
-  background: #333;
-  color: #ffc107;
+.vozila-page-wrapper .btn-outline-light {
+    border: 1px solid #333;
+    color: #888;
+    transition: 0.3s;
+}
+
+.vozila-page-wrapper .btn-outline-light:hover {
+    background-color: transparent;
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+/* Prvo skidamo Bootstrap plavu boju s Linka koji glumi plus */
+.vozila-page-wrapper .gold-border-card .plus-icon {
+    color: #ffc107;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Osiguravamo da i sama ikona unutar tog linka bude zlatna */
+.vozila-page-wrapper .gold-border-card .plus-icon i {
+    color: #ffc107;
+    font-size: 1.5rem; /* Malo ga povećaj ako želiš da bude vidljiviji */
+}
+
+/* Hover efekt da ostane zlatno ili postane bijelo (po želji) */
+.vozila-page-wrapper .gold-border-card .plus-icon:hover i {
+    color: #fff;
 }

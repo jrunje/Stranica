@@ -15,20 +15,14 @@ const FilterVozila = () => {
   const [selectedGodina, setSelectedGodina] = useState("");
 
   useEffect(() => {
-    // 1. Dohvat MARKI - koristimo samo naziv jer je v2 već u BASE_URL
     fetch(`${BASE_URL}marka`) 
       .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) setMarke(data);
-      })
+      .then(data => { if (Array.isArray(data)) setMarke(data); })
       .catch(err => console.error("Greška marke:", err));
 
-    // 2. Dohvat MODELA
     fetch(`${BASE_URL}model-vozila`) 
       .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) setModeli(data);
-      })
+      .then(data => { if (Array.isArray(data)) setModeli(data); })
       .catch(err => console.error("Greška modeli:", err));
   }, []);
 
@@ -39,13 +33,13 @@ const FilterVozila = () => {
 
   return (
     <div className="container filter-container">
-      <div className="card shadow-lg border-0 bg-white p-4 filter-card">
-        <form onSubmit={handleSearch} className="row g-3 align-items-end">
+      <div className="card shadow-lg border-0 bg-white main-filter-card">
+        <form onSubmit={handleSearch} className="row g-3 align-items-end filter-form-row">
           
-          <div className="col-md-2">
-            <label className="small fw-bold text-muted mb-2 text-uppercase">Marka vozila</label>
+          <div className="col">
+            <label className="filter-label">Marka vozila</label>
             <select 
-              className="form-select border-light-subtle py-2"
+              className="form-select filter-input"
               value={selectedMarka}
               onChange={(e) => setSelectedMarka(e.target.value)}
             >
@@ -56,10 +50,10 @@ const FilterVozila = () => {
             </select>
           </div>
 
-          <div className="col-md-2">
-            <label className="small fw-bold text-muted mb-2 text-uppercase">Model vozila</label>
+          <div className="col">
+            <label className="filter-label">Model vozila</label>
             <select 
-              className="form-select border-light-subtle py-2"
+              className="form-select filter-input"
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
             >
@@ -70,22 +64,21 @@ const FilterVozila = () => {
             </select>
           </div>
 
-          <div className="col-md-2">
-            <label className="small fw-bold text-muted mb-2 text-uppercase">Cijena do (€)</label>
+          <div className="col">
+            <label className="filter-label">Cijena do (€)</label>
             <input 
               type="number" 
-              className="form-control border-light-subtle py-2" 
+              className="form-control filter-input" 
               placeholder="Eura..."
               value={selectedCijena}
               onChange={(e) => setSelectedCijena(e.target.value)}
             />
           </div>
 
-          {/* GODINA */}
-          <div className="col-md-2">
-            <label className="small fw-bold text-muted mb-2 text-uppercase">Godina</label>
+          <div className="col">
+            <label className="filter-label">Godina</label>
             <select 
-              className="form-select border-light-subtle py-2"
+              className="form-select filter-input"
               value={selectedGodina}
               onChange={(e) => setSelectedGodina(e.target.value)}
             >
@@ -98,8 +91,8 @@ const FilterVozila = () => {
             </select>
           </div>
 
-          <div className="col-md-2 text-end">
-            <button type="submit" className="btn btn-warning w-100 py-2 fw-bold text-uppercase border-0">
+          <div className="col-md-2">
+            <button type="submit" className="btn btn-warning filter-submit-btn">
                Pretraži
             </button>
           </div>

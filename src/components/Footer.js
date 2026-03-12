@@ -21,7 +21,7 @@ const Footer = () => {
                 <ul className="list-unstyled">
                   <li><Link to="/vozila">Sva vozila</Link></li>
                   <li><Link to="/vozila-akcija">Vozila na akciji</Link></li>
-                  <li><Link to="/vozila-u-dolasku">Vozila u dolasku</Link></li>
+                  <li><Link to="/otkup-vozila">Uvoz vozila</Link></li>
                   <li><Link to="/otkup-vozila">Otkup vozila</Link></li>
                 </ul>
               </div>
@@ -72,7 +72,7 @@ const Footer = () => {
           <div className="col-md-4 text-md-end">
             <img src={logo} alt="Runje Logo" style={{ height: "70px", marginBottom: "20px" }} />
             <h4>Pridružite nam se.</h4>
-            <p className="text-muted">Prijavite se na naš newsletter za najnovije ponude.</p>
+           
           </div>
         </div>
 

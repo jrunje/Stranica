@@ -12,34 +12,49 @@ const Vozila = () => {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
 
-  // Stanja za opcije u filterima - koristimo tvoje točne nazive
+  // Taksonomije
   const [marke, setMarke] = useState([]);
   const [modeli, setModeli] = useState([]);
-  const [mjenjac, setMjenjac] = useState([]); // Ispravljeno: jednina
+  const [mjenjaci, setMjenjaci] = useState([]);
   const [motori, setMotori] = useState([]);
   const [boje, setBoje] = useState([]);
+  const [kategorijeVozila, setKategorijeVozila] = useState([]);
+
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const [filters, setFilters] = useState({
+    marka: "",
+    "model-vozila": "",
+    mjenjac: "",
+    "vrsta-motora": "",
+    boja: "",
+    maxCijena: "",
+    maxKm: "",
+    godinaOd: "",
+    maxSnaga: ""
+  });
 
   useEffect(() => {
-    // Dohvat taksonomija s točnim slugovima iz tvog API-ja
     const fetchOptions = async () => {
       try {
-        const [resMarka, resModel, resMjenjac, resMotor, resBoja] = await Promise.all([
+        const [resMarka, resModel, resMjenjac, resMotor, resBoja, resKat] = await Promise.all([
           fetch(`${BASE_URL}marka`),
           fetch(`${BASE_URL}model-vozila`),
-          fetch(`${BASE_URL}mjenjac`), // Tvoj točan naziv
+          fetch(`${BASE_URL}mjenjac`),
           fetch(`${BASE_URL}vrsta-motora`),
-          fetch(`${BASE_URL}boja`)
+          fetch(`${BASE_URL}boja`),
+          fetch(`${BASE_URL}kategorija-vozila`)
         ]);
 
         setMarke(await resMarka.json());
         setModeli(await resModel.json());
-        setMjenjac(await resMjenjac.json());
+        setMjenjaci(await resMjenjac.json());
         setMotori(await resMotor.json());
         setBoje(await resBoja.json());
+        setKategorijeVozila(await resKat.json());
       } catch (err) {
-        console.error("Greška pri dohvatu filtera:", err);
+        console.error("Greška pri dohvatu opcija:", err);
       }
     };
     fetchOptions();
@@ -50,13 +65,58 @@ const Vozila = () => {
     fetch(`${BASE_URL}vozila?_embed&per_page=100`)
       .then(res => res.json())
       .then(data => {
-        if (Array.isArray(data)) {
-          setVehicles(data);
-          setPageCount(Math.ceil(data.length / 6));
-        }
+        if (Array.isArray(data)) setVehicles(data);
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFilters(prev => ({ ...prev, [name]: value }));
+    setCurrentPage(0);
+  };
+
+  const resetFilters = () => {
+  setFilters({
+    marka: "",
+    "model-vozila": "",
+    mjenjac: "",
+    "vrsta-motora": "",
+    boja: "",
+    maxCijena: "",
+    maxKm: "",
+    godinaOd: "",
+    maxSnaga: ""
+  });
+  setStatusFilter("all"); // Resetira i gornje gumbe na "Sva vozila"
+  setCurrentPage(0);
+};
+
+  const akcijaKat = kategorijeVozila.find(k => k.slug === "akcija");
+
+  const filteredVehicles = vehicles.filter(v => {
+    const { acf } = v;
+    
+    // Status filter (Gumbi iznad)
+    const matchStatus = statusFilter === "all" || v["kategorija-vozila"]?.includes(akcijaKat?.id);
+
+    // Sidebar filteri (Taksonomije)
+    const matchMarka = !filters.marka || v.marka?.includes(parseInt(filters.marka));
+    const matchModel = !filters["model-vozila"] || v["model-vozila"]?.includes(parseInt(filters["model-vozila"]));
+    const matchMjenjac = !filters.mjenjac || v.mjenjac?.includes(parseInt(filters.mjenjac));
+    const matchMotor = !filters["vrsta-motora"] || v["vrsta-motora"]?.includes(parseInt(filters["vrsta-motora"]));
+    const matchBoja = !filters.boja || v.boja?.includes(parseInt(filters.boja));
+
+    // ACF filteri
+    const matchCijena = !filters.maxCijena || parseInt(acf.cijena) <= parseInt(filters.maxCijena);
+    const matchKm = !filters.maxKm || parseInt(acf.kilometraza) <= parseInt(filters.maxKm);
+    const matchGodina = !filters.godinaOd || parseInt(acf.godina) >= parseInt(filters.godinaOd);
+    const matchSnaga = !filters.maxSnaga || parseInt(acf.snaga_motora) <= parseInt(filters.maxSnaga);
+
+    return matchStatus && matchMarka && matchModel && matchMjenjac && matchMotor && matchBoja && matchCijena && matchKm && matchGodina && matchSnaga;
+  });
+
+  const pageCount = Math.ceil(filteredVehicles.length / 6);
 
   return (
     <div className="vozila-page-wrapper bg-black">
@@ -65,97 +125,129 @@ const Vozila = () => {
       
       <div className="container py-5">
         <h1 className="main-title text-white mb-5">NAŠA PONUDA</h1>
+
+        {/* RED 1: GUMBI IZNAD SVEGA */}
+        <div className="row mb-4">
+          <div className="col-12">
+            <div className="status-toggle-container">
+              <button 
+                className={`status-btn ${statusFilter === 'all' ? 'active' : ''}`}
+                onClick={() => { setStatusFilter("all"); setCurrentPage(0); }}
+              >
+                SVA VOZILA
+              </button>
+              <button 
+                className={`status-btn ${statusFilter !== 'all' ? 'active' : ''}`}
+                onClick={() => { setStatusFilter(akcijaKat?.id || "akcija"); setCurrentPage(0); }}
+              >
+                VOZILA NA AKCIJI
+              </button>
+            </div>
+          </div>
+        </div>
         
         <div className="row">
-          {/* FILTERI LIJEVO */}
+          {/* SIDEBAR */}
           <div className="col-lg-3">
-            <aside className="filter-sidebar p-4 rounded bg-dark border border-secondary text-white">
+            <aside className="filter-sidebar p-4 text-white">
               <h5 className="text-warning fw-bold mb-4">PRETRAGA</h5>
               
               <div className="mb-3">
                 <label className="filter-label">Marka</label>
-                <select className="form-select custom-select">
+                <select name="marka" className="form-select custom-select" value={filters.marka} onChange={handleInputChange}>
                   <option value="">Sve marke</option>
-                  {Array.isArray(marke) && marke.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                  {marke.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                 </select>
               </div>
 
               <div className="mb-3">
                 <label className="filter-label">Model</label>
-                <select className="form-select custom-select">
+                <select name="model-vozila" className="form-select custom-select" value={filters["model-vozila"]} onChange={handleInputChange}>
                   <option value="">Svi modeli</option>
-                  {Array.isArray(modeli) && modeli.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                  {modeli.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                 </select>
               </div>
 
               <div className="mb-3">
                 <label className="filter-label">Mjenjač</label>
-                <select className="form-select custom-select">
+                <select name="mjenjac" className="form-select custom-select" value={filters.mjenjac} onChange={handleInputChange}>
                   <option value="">Svi tipovi</option>
-                  {Array.isArray(mjenjac) && mjenjac.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                  {mjenjaci.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                 </select>
               </div>
 
               <div className="mb-3">
                 <label className="filter-label">Motor</label>
-                <select className="form-select custom-select">
+                <select name="vrsta-motora" className="form-select custom-select" value={filters["vrsta-motora"]} onChange={handleInputChange}>
                   <option value="">Svi motori</option>
-                  {Array.isArray(motori) && motori.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                  {motori.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                 </select>
               </div>
 
               <div className="mb-3">
                 <label className="filter-label">Boja</label>
-                <select className="form-select custom-select">
+                <select name="boja" className="form-select custom-select" value={filters.boja} onChange={handleInputChange}>
                   <option value="">Sve boje</option>
-                  {Array.isArray(boje) && boje.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
+                  {boje.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                 </select>
               </div>
 
-  
-  <div className="mb-3">
-    <label className="filter-label">Maksimalna cijena (€)</label>
-    <input type="number" className="form-control custom-select" placeholder="npr. 20000" />
-  </div>
+              <div className="mb-3">
+                <label className="filter-label">Maksimalna cijena (€)</label>
+                <input name="maxCijena" type="number" className="form-control custom-select" placeholder="npr. 20000" value={filters.maxCijena} onChange={handleInputChange} />
+              </div>
 
-  <div className="mb-3">
-    <label className="filter-label">Kilometraža do (km)</label>
-    <input type="number" className="form-control custom-select" placeholder="npr. 150000" />
-  </div>
+              <div className="mb-3">
+                <label className="filter-label">Kilometraža do (km)</label>
+                <input name="maxKm" type="number" className="form-control custom-select" placeholder="npr. 150000" value={filters.maxKm} onChange={handleInputChange} />
+              </div>
 
-  <div className="row g-2 mb-3">
-    <div className="col-6">
-      <label className="filter-label">Godina od</label>
-      <input type="number" className="form-control custom-select" placeholder="2015" />
-    </div>
-    <div className="col-6">
-      <label className="filter-label">Snaga do (KS)</label>
-      <input type="number" className="form-control custom-select" placeholder="150" />
-    </div>
-  </div>
+              <div className="row g-2 mb-3">
+                <div className="col-6">
+                  <label className="filter-label">Godina od</label>
+                  <input name="godinaOd" type="number" className="form-control custom-select" placeholder="2015" value={filters.godinaOd} onChange={handleInputChange} />
+                </div>
+                <div className="col-6">
+                  <label className="filter-label">Snaga do (KS)</label>
+                  <input name="maxSnaga" type="number" className="form-control custom-select" placeholder="150" value={filters.maxSnaga} onChange={handleInputChange} />
+                </div>
+              </div>
 
-  <button className="btn btn-warning w-100 fw-bold mt-3">FILTRIRAJ</button>
-</aside>
-
-            
+              <button 
+  className="btn btn-outline-light w-100 fw-bold mt-3" 
+  onClick={resetFilters}
+  style={{ borderColor: '#333', fontSize: '0.9rem' }}
+>
+  RESETIRAJ FILTERE
+</button>
+            </aside>
           </div>
 
-          {/* VOZILA DESNO */}
+          {/* KARTICE */}
           <div className="col-lg-9">
             <div className="row g-4">
-              {vehicles.slice(currentPage * 6, (currentPage + 1) * 6).map(v => (
-                <VehicleCard key={v.id} vehicle={v} />
-              ))}
+              {filteredVehicles.length > 0 ? (
+                filteredVehicles.slice(currentPage * 6, (currentPage + 1) * 6).map(v => (
+                  <VehicleCard key={v.id} vehicle={v} />
+                ))
+              ) : (
+                <div className="col-12 text-center py-5">
+                  <h4 className="text-white opacity-50">Nema pronađenih vozila.</h4>
+                </div>
+              )}
             </div>
 
-            <ReactPaginate 
-              previousLabel={"←"}
-              nextLabel={"→"}
-              pageCount={pageCount}
-              onPageChange={(e) => { setCurrentPage(e.selected); ScrollToTop(); }}
-              containerClassName={"pagination-custom"}
-              activeClassName={"active"}
-            />
+            {pageCount > 1 && (
+              <ReactPaginate 
+                previousLabel={"←"}
+                nextLabel={"→"}
+                pageCount={pageCount}
+                onPageChange={(e) => { setCurrentPage(e.selected); ScrollToTop(); }}
+                containerClassName={"pagination-custom"}
+                activeClassName={"active"}
+                forcePage={currentPage}
+              />
+            )}
           </div>
         </div>
       </div>
