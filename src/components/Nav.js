@@ -22,6 +22,7 @@ const Navigation = () => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto text-uppercase fw-semibold align-items-center">
+            <Nav.Link as={Link} to="/" className="px-2">Naslovnica</Nav.Link>
             
              <Nav.Link as={Link} to="/vozila" className="px-2">Ponuda vozila</Nav.Link>
 

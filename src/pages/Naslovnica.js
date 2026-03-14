@@ -11,56 +11,61 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Naslovnica = () => {
   const [vozila, setVozila] = useState(null);
+  const [pageData, setPageData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchVozila = async () => {
+    const fetchData = async () => {
       try {
-        // Dohvaćamo vozila s _embed parametrom zbog slika
-        const response = await fetch(`${BASE_URL}vozila?_embed`);
-        if (!response.ok) {
-          throw new Error('Ne mogu povući podatke');
-        }
-        const data = await response.json();
-        setVozila(data);
+        // 1. Dohvaćamo vozila za swiper
+        const vozilaRes = await fetch(`${BASE_URL}vozila?_embed`);
+        const vozilaData = await vozilaRes.json();
+        setVozila(vozilaData);
+
+        // 2. Dohvaćamo podatke o naslovnici koristeći tvoj ID: 126
+        const pageRes = await fetch(`${BASE_URL}pages/126?_embed&acf_format=standard`);
+        const pageDataJson = await pageRes.json();
+        setPageData(pageDataJson);
+
+        setLoading(false);
       } catch (err) {
-        console.log("Greška:", err.message);
+        console.error("Greška pri dohvatu podataka:", err.message);
+        setLoading(false);
       }
     };
-    fetchVozila();
+    fetchData();
   }, []);
 
-  // Dok se podaci učitavaju, prikazujemo tvoju Loader komponentu
-  if (!vozila) return <Loader />;
+  if (loading || !vozila) return <Loader />;
 
   return (
-    <div className="bg-black min-vh-100">
-      
-      {/* 1. HERO SECTION */}
-      {/* Koristimo sliku prvog vozila iz niza kao pozadinu, ili fallback ako niz nekim čudom bude prazan */}
-      <HeroSection 
-      tip="home"
-    
-        fallback="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop" 
-      />
+    <div className="bg-black min-vh-100 naslovnica-wrapper">
+      <div className="hero-filter-container" style={{ position: 'relative' }}>
+        
+        {/* HeroSection s ispravljenim objektom stranice */}
+        <HeroSection 
+          tip="home"
+          stranica={{
+            ...pageData,
+            title: { rendered: "" }
+          }}
+          fallback="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop" 
+        />
 
-      {/* 2. FILTER VOZILA */}
-      {/* Ova komponenta se u CSS-u podiže prema gore pomoću negativne margine */}
-      <div className="filter-wrapper">
-      <FilterVozila />
+        {/* Filter apsolutno pozicioniran na dno Heroja */}
+        <div className="filter-absolute-wrapper">
+          <FilterVozila />
+        </div>
       </div>
 
-      {/* 3. IZDVOJENA VOZILA (SWIPER) */}
-      {/* Umjesto klasične mreže (row/col), sada koristimo moderan vrtuljak */}
-      <div className="py-5">
+      {/* IZDVOJENA VOZILA */}
+      <div className="py-5 swiper-section-top">
         <VozilaSwiper vozila={vozila} />
       </div>
 
       <DodatneUsluge />
       <PovjerenjeSection /> 
       <KontaktMapaSection /> 
-
-  
-      
 
     </div>
   );

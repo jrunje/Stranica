@@ -2,27 +2,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = ({ stranica, fallback, tip }) => {
-  // Logika za sliku: prioritet ima Featured Image iz WP-a, inače fallback
-  const selectedImg =
-    stranica?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || fallback;
+  // 1. Sigurnija logika za dohvat slike
+  // Provjeravamo embedded (WP Featured Image), pa ACF polje ako postoji, pa fallback
+  const wpImg = stranica?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+  const acfImg = stranica?.acf?.hero_image; 
+  
+  // Ako je sve prazno, koristi ovaj default link ili tvoj fallback
+  const selectedImg = wpImg || acfImg || fallback || "https://tvoja-domena.com/default-hero.jpg";
 
-  // Provjeravamo je li ovo stranica tipa 'jamstvo' ili 'single' da prilagodimo sadržaj
+  // Provjeravamo tip stranice
   const isSimpleHero = tip === 'jamstvo' || tip === 'single' || tip === 'o-nama';
+
+  // Dinamički stilovi ovisno o tipu heroja
+  const sectionStyle = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${selectedImg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    width: '100%',
+    // Ako je Jamstvo/O Nama, dajemo mu barem 400px visine da se slika vidi
+    minHeight: isSimpleHero ? '400px' : '85vh',
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative'
+  };
 
   return (
     <section 
-      className={`hero-section d-flex align-items-center ${isSimpleHero ? 'simple-hero' : ''}`}
-      style={{ '--bg-image': `url(${selectedImg})` }}
+      className={`hero-section ${isSimpleHero ? 'simple-hero' : ''}`}
+      style={sectionStyle}
     >
-      <div className="container">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div className="row">
           <div className="col-lg-10 text-white">
-            {/* Naslov: Uzima ACF naslov, ili WP naslov stranice, ili default */}
+            
+            {/* Naslov: Prioritet ima ACF naslov, pa WP naslov, pa default */}
             <h1 className="display-3 fw-bold mb-3">
-              {stranica?.acf?.naslov || stranica?.title?.rendered || "Standard koji zaslužujete."}
+              {!isSimpleHero 
+                ? "Standard koji zaslužujete." // Naslovnica
+                : (stranica?.acf?.naslov || stranica?.title?.rendered || "Runje Automobili") 
+              }
             </h1>
             
-            {/* Podnaslov i Gumb se prikazuju samo ako NIJE simple hero (npr. na naslovnici) */}
+            {/* Podnaslov i Gumb - Prikazuju se samo na naslovnici (kad NIJE isSimpleHero) */}
             {!isSimpleHero && (
               <>
                 <p className="fs-4 mb-4 hero-subtitle">
@@ -33,6 +55,7 @@ const HeroSection = ({ stranica, fallback, tip }) => {
                 </Link>
               </>
             )}
+            
           </div>
         </div>
       </div>

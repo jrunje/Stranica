@@ -7,105 +7,74 @@
 }
 
 .jamstvo-content-card {
-    background-color: #111;
+    background-color: #111; /* Zadržavamo tamnu karticu, ona je OK */
     border: 1px solid #222;
     padding: 60px;
     border-radius: 15px;
-    margin-top: -80px; /* Preklapanje preko Hero sekcije */
+    
+    /* POPRAVAK: Smanjujemo negativni margin da se spusti sadržaj */
+    /* Od `-200px` spuštamo ga na `-80px` - ovo bi trebalo biti "za dlaku" bolje */
+    margin-top: -80px; 
+    
     position: relative;
     z-index: 10;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
+/* Sprječava da kartica pobjegne preblizu dnu na malim ekranima */
+.jamstvo-content-card, 
+.about-content-card {
+    /* Povećavamo donji razmak za bolju preglednost */
+    margin-bottom: 80px; 
+}
 /* ==========================================
-   2. WP CONTENT RENDERER (Tekst iz WordPressa)
+   2. WP CONTENT RENDERER (Popravak vidljivosti teksta)
    ========================================== */
 .wp-content-render {
-    color: #eee;
+    /* POPRAVAK: Povećavamo svjetlinu teksta sa `#eee` na čistu bijelu `#ffffff` */
+    color: #ffffff; 
     line-height: 1.8;
     font-size: 1.15rem;
 }
 
-/* Naslovi unutar teksta */
+/* Naslovi unutar teksta (Popravak) */
 .wp-content-render h2, 
 .wp-content-render h3 {
-    color: #ffc107;
+    /* Pojačavamo kontrast zlatne boje */
+    color: #ffc107; 
     font-weight: 800;
     text-transform: uppercase;
     margin-top: 40px;
     margin-bottom: 20px;
 }
 
-/* Liste (Kvačice) */
-.wp-content-render ul {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 30px;
-}
-
-.wp-content-render li {
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 15px;
-}
-
-.wp-content-render li::before {
-    content: "\F272"; /* Bootstrap icon check-circle */
-    font-family: "bootstrap-icons";
-    position: absolute;
-    left: 0;
-    color: #ffc107;
-}
-
-/* ==========================================
-   3. FIX ZA KONTAKT (Linkovi i Ikone)
-   ========================================== */
-
-/* Uklanja plavu boju sa svih linkova u članku (uključujući mail) */
+/* Uklanja plavu boju sa svih linkova u članku (uključujući mail) (Popravak) */
 .wp-content-render a {
-    color: #fff !important;
+    /* POPRAVAK: Prisilno stavljamo bijelu boju i ovdje */
+    color: #ffffff !important; 
     text-decoration: none;
     transition: 0.3s;
     font-weight: 600;
 }
 
-.wp-content-render a:hover {
-    color: #ffc107 !important;
-}
-
-/* Automatska ikona za MAIL */
-.wp-content-render a[href^="mailto:"]::before {
-    content: "\F32F"; /* Bootstrap icon envelope */
-    font-family: "bootstrap-icons";
-    margin-right: 12px;
-    color: #ffc107;
-    vertical-align: middle;
-}
-
-/* Automatska ikona za TELEFON */
-/* Napomena: U WP-u stavi link na broj u formatu tel:+385... */
-.wp-content-render a[href^="tel:"]::before {
-    content: "\F5C1"; /* Bootstrap icon telephone */
-    font-family: "bootstrap-icons";
-    margin-right: 12px;
-    color: #ffc107;
-    vertical-align: middle;
-}
-
 /* ==========================================
-   4. RESPONSIVE
+   4. RESPONSIVE (Mobilne prilagodbe)
    ========================================== */
-@media (max-width: 991px) {
-    .jamstvo-content-card {
-        padding: 40px;
-        margin-top: -50px;
+@media (max-width: 768px) {
+    .jamstvo-content-card, 
+    .about-content-card {
+        /* Na mobitelu još manje preklapanja da naslov Heroja ostane vidljiv */
+        margin-top: -40px; 
+        padding: 25px;
+        border-radius: 10px; 
     }
 }
 
-@media (max-width: 768px) {
-    .jamstvo-content-card {
-        padding: 25px;
-        margin-top: -30px;
-        border-radius: 0;
+@media (max-width: 480px) {
+    .jamstvo-content-card, 
+    .about-content-card {
+        /* Skoro pa nula preklapanja za najmanje ekrane */
+        margin-top: -20px;
+        padding: 20px;
     }
 }

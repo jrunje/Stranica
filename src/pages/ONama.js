@@ -11,12 +11,12 @@ const ONama = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Dohvaćamo točno stranicu s ID-om 618
-    fetch(`${BASE_URL}pages/618?_embed&acf_format=standard`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPageData(data);
-        setLoading(false);
+    fetch(`${BASE_URL}pages/618?acf_format=standard&_embed`) // Zamijeni redoslijed
+    .then((res) => res.json())
+    .then((data) => {
+       console.log("Novi podaci s embedom:", data); // Provjeri vidi li se sad _embedded
+       setPageData(data);
+       setLoading(false);
       })
       .catch(err => console.error("Greška pri dohvatu stranice O nama:", err));
   }, []);
@@ -24,12 +24,11 @@ const ONama = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className="o-nama-page-wrapper bg-black text-white">
+    <div className="o-nama-page-wrapper bg-black">
       <Helmet>
         <title>O Nama | Runje Automobili</title>
       </Helmet>
 
-      {/* HeroSection koristi sliku postavljenu u WP (Featured Image) */}
       <HeroSection 
         stranica={pageData} 
         tip="o-nama" 
@@ -37,18 +36,23 @@ const ONama = () => {
 
       <div className="container py-5">
         <div className="row justify-content-center">
-          <div className="col-lg-10">
+          <div className="col-lg-12">
             <div className="about-content-card">
-              {/* Naslov iz WP-a */}
-              <h1 className="display-4 fw-bold mb-4 gold-text">
-                {pageData.title.rendered}
-              </h1>
-              
-              {/* Glavni sadržaj iz WP-a */}
+              {/* Sadržaj iz WordPressa */}
               <div 
                 className="wp-about-render"
                 dangerouslySetInnerHTML={{ __html: pageData.content.rendered }} 
               />
+
+              {/* Gumbi za kontakt na dnu kartice */}
+              <div className="contact-buttons-wrapper d-flex flex-wrap gap-3 mt-5">
+                <a href="mailto:jelena_bukovac@hotmail.com" className="btn-gold-rounded text-decoration-none">
+                  <i className="bi bi-envelope-at me-2"></i> Pošalji upit
+                </a>
+                <a href="tel:+385917394888" className="btn-outline-white-rounded text-decoration-none">
+                  <i className="bi bi-telephone me-2"></i> Nazovi
+                </a>
+              </div>
             </div>
           </div>
         </div>

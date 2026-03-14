@@ -9,15 +9,17 @@ const Jamstvo = () => {
   const [pageData, setPageData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Važno: dodajemo _embed da HeroSection može izvući sliku (featuredmedia)
-    fetch(`${BASE_URL}pages/834?_embed&acf_format=standard`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPageData(data);
-        setLoading(false);
-      });
-  }, []);
+  console.log(pageData)
+
+useEffect(() => {
+  fetch(`${BASE_URL}pages/834?acf_format=standard&_embed`) // Zamijeni redoslijed
+    .then((res) => res.json())
+    .then((data) => {
+       console.log("Novi podaci s embedom:", data); // Provjeri vidi li se sad _embedded
+       setPageData(data);
+       setLoading(false);
+    });
+}, []);
 
   if (loading) return <Loader />;
 
@@ -39,7 +41,16 @@ const Jamstvo = () => {
                 className="wp-content-render"
                 dangerouslySetInnerHTML={{ __html: pageData.content.rendered }} 
               />
+              <div className="contact-buttons-wrapper d-flex flex-wrap gap-3 mt-5">
+  <a href="mailto:jelena_bukovac@hotmail.com" className="btn btn-gold-rounded">
+    <i className="bi bi-envelope-at me-2"></i> Pošalji upit
+  </a>
+  <a href="tel:+385917394888" className="btn btn-outline-white-rounded">
+    <i className="bi bi-telephone me-2"></i> Nazovi
+  </a>
+</div>
             </div>
+
           </div>
         </div>
       </div>
