@@ -1,0 +1,92 @@
+/* 1. OSNOVA STRANICE */
+.novosti-page-wrapper {
+    background-color: #000;
+    min-height: 100vh;
+}
+
+.novosti-hero {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0 50px;
+    text-align: center;
+}
+
+.gold-divider {
+    height: 3px;
+    width: 60px;
+    background-color: #ffc107;
+    margin-top: 15px;
+}
+
+/* 2. STIL KARTICE (Ovdje je ključ za gumbe) */
+.novosti-card {
+    background-color: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%; /* Omogućuje da se gumb gurne na dno */
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.novosti-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffc107;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1);
+}
+
+.card-img-wrapper {
+    height: 220px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.novosti-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* 3. TEKST I GUMBI */
+.card-body {
+    flex-grow: 1; /* Tjera body da popuni sav prostor */
+    display: flex;
+    flex-direction: column;
+}
+
+.text-gold {
+    color: #ffc107 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.card-text {
+    /* Ograničava tekst na 3 reda da kartice ostanu uredne */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+/* PAGINACIJA - Prilagođena tvom stilu */
+.custom-pagination .page-link {
+    background-color: #111;
+    border: 1px solid #333;
+    color: #fff;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.custom-pagination .active .page-link {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+}

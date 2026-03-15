@@ -1,0 +1,48 @@
+.otkup-page-wrapper {
+    background-color: #000;
+    min-height: 100vh;
+}
+
+.otkup-content-card {
+    background-color: #111;
+    border: 1px solid #222;
+    padding: 60px;
+    border-radius: 15px;
+    margin-top: -80px; 
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    margin-bottom: 80px;
+}
+
+/* Stilovi za WordPress tekst */
+.wp-content-render {
+    color: #ffffff; 
+    line-height: 1.8;
+    font-size: 1.15rem;
+}
+
+.wp-content-render h2, 
+.wp-content-render h3 {
+    color: #ffc107; 
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Stil za gumbe na dnu */
+.text-gold {
+    color: #ffc107 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Mobilna prilagodba */
+@media (max-width: 768px) {
+    .otkup-content-card {
+        margin-top: -40px; 
+        padding: 30px 20px;
+    }
+}

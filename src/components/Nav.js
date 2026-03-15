@@ -30,9 +30,9 @@ const Navigation = () => {
               <NavDropdown.Item as={Link} to="/uvoz-vozila">Uvoz vozila</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/otkup-vozila">Otkup vozila</NavDropdown.Item>
             </NavDropdown>
-
+             <Nav.Link as={Link} to="/novosti" className="px-2">Novosti</Nav.Link>
             <Nav.Link as={Link} to="/jamstvo" className="px-2">Jamstvo</Nav.Link>
-            <Nav.Link as={Link} to="/novosti" className="px-2">Novosti</Nav.Link>
+           
             <Nav.Link as={Link} to="/o-nama" className="px-2">O nama</Nav.Link>
             <Nav.Link as={Link} to="/kontakt" className="px-2">Kontakt</Nav.Link>
 

@@ -1,0 +1,91 @@
+/* Osnovni wrapper stranice */
+.kontakt-page-wrapper {
+    background-color: #000;
+    min-height: 100vh;
+}
+
+/* Glavna kartica sadržaja - ista kao na Jamstvu */
+.kontakt-content-card {
+    background-color: #111;
+    border: 1px solid #222;
+    padding: 60px;
+    border-radius: 15px;
+    margin-top: -80px; /* Preklapanje s Hero sekcijom */
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    margin-bottom: 80px;
+}
+
+/* Zlatni krugovi oko ikona */
+.icon-circle {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 193, 7, 0.1);
+    border: 1px solid #ffc107;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffc107;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+
+/* Stilovi za text/info listu */
+.kontakt-info-list span, 
+.kontakt-info-list a {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    transition: 0.3s;
+}
+
+.kontakt-info-list a:hover {
+    color: #ffc107 !important;
+}
+
+/* Stilovi forme */
+.custom-input {
+    background-color: #1a1a1a !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+    padding: 12px 15px !important;
+    border-radius: 8px !important;
+}
+
+.custom-input:focus {
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25) !important;
+    outline: none;
+}
+
+/* Naslovi i tekst iz WP-a */
+.text-gold {
+    color: #ffc107 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* Jači selektor koji osigurava vidljivost teksta na gumbu */
+.kontakt-page-wrapper .kontakt-form .btn-gold-rounded:disabled {
+    background-color: #ffc107; /* Zadržavamo zlatnu boju */
+    color: #000000;           /* Čisti crni tekst - savršen kontrast */
+    opacity: 1;               /* Potpuna vidljivost, bez prozirnosti */
+    border-color: #ffc107;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+}
+/* Prilagodba za mobitele */
+@media (max-width: 768px) {
+    .kontakt-content-card {
+        padding: 30px 20px;
+        margin-top: -40px;
+    }
+    
+    .map-holder {
+        min-height: 250px;
+        margin-top: 20px;
+    }
+}
