@@ -1,6 +1,4 @@
-/* ==========================================
-   1. OSNOVA I STRUKTURA (Samo za stranicu Vozila)
-   ========================================== */
+/* 1. OSNOVA I STRUKTURA*/
 .vozila-page-wrapper {
     background-color: #000;
     min-height: 100vh;
@@ -19,15 +17,13 @@
     margin-bottom: 30px;
 }
 
-/* ==========================================
-   2. FILTERI I GUMBI
-   ========================================== */
+/*2. FILTERI I GUMBI*/
 .filter-sidebar {
     background-color: #1a1a1a;
     border: 1px solid #333;
     padding: 20px;
     border-radius: 12px;
-    max-width: 100%; /* Pusti Bootstrapu da diktira širinu kroz col-lg-3 */
+    max-width: 100%; 
 }
 
 .custom-select {
@@ -62,9 +58,7 @@
     border-color: #ffc107;
 }
 
-/* ==========================================
-   3. KARTICE VOZILA (VehicleCard.js)
-   ========================================== */
+/* 3. KARTICE VOZILA (VehicleCard.js)*/
 .vozila-page-wrapper .gold-border-card {
     background-color: #111;
     border: 1px solid #333;
@@ -128,9 +122,7 @@
     font-size: 1.3rem;
 }
 
-/* ==========================================
-   4. PAGINACIJA I RESET
-   ========================================== */
+/*4. PAGINACIJA I RESET*/
 .pagination-custom {
     display: flex;
     justify-content: center;
@@ -167,7 +159,7 @@
     color: #ffc107;
 }
 
-/* Prvo skidamo Bootstrap plavu boju s Linka koji glumi plus */
+/* Prvo skidamo Bootstrap plavu boju s Linka*/
 .vozila-page-wrapper .gold-border-card .plus-icon {
     color: #ffc107;
     text-decoration: none;
@@ -181,7 +173,7 @@
     font-size: 1.5rem; /* Malo ga povećaj ako želiš da bude vidljiviji */
 }
 
-/* Hover efekt da ostane zlatno ili postane bijelo (po želji) */
+/* Hover efekt*/
 .vozila-page-wrapper .gold-border-card .plus-icon:hover i {
     color: #fff;
 }

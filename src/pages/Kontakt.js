@@ -97,7 +97,7 @@ const Kontakt = () => {
                   </div>
                 </div>
 
-                {/* DESNO: Google Karta (Popravljen iframe) */}
+                {/* DESNO: Google Karta*/}
                 <div className="col-md-7">
                   <div className="map-holder" style={{ height: '100%', minHeight: '350px', borderRadius: '15px', overflow: 'hidden', border: '1px solid #333' }}>
                     <iframe 

@@ -5,11 +5,11 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Ovo se izvršava automatski čim se promijeni URL (pathname)
+    // izvršava se automatski čim se promijeni URL (pathname)
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "instant", // Bolje je "instant" za promjenu stranice da ne "leti" pred očima
+      behavior: "instant", // "instant" za promjenu stranice
     });
   }, [pathname]);
 

@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark" className="py-2 custom-navbar" style={{ backgroundColor: "#111" }}>
       <Container>
-        {/* Logo s novom klasom za veličinu */}
+        {/* Logo s klasom za veličinu */}
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img 
             src={logo} 

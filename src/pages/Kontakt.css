@@ -4,7 +4,7 @@
     min-height: 100vh;
 }
 
-/* Glavna kartica sadržaja - ista kao na Jamstvu */
+/* Glavna kartica sadržaja*/
 .kontakt-content-card {
     background-color: #111;
     border: 1px solid #222;
@@ -68,10 +68,10 @@
 }
 
 
-/* Jači selektor koji osigurava vidljivost teksta na gumbu */
+/*osiguravamo vidljivost teksta na gumbu */
 .kontakt-page-wrapper .kontakt-form .btn-gold-rounded:disabled {
-    background-color: #ffc107; /* Zadržavamo zlatnu boju */
-    color: #000000;           /* Čisti crni tekst - savršen kontrast */
+    background-color: #ffc107; 
+    color: #000000;          
     opacity: 1;               /* Potpuna vidljivost, bez prozirnosti */
     border-color: #ffc107;
     cursor: not-allowed;

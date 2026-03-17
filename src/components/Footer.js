@@ -1,9 +1,16 @@
 import { useLocation, Link } from "react-router-dom";
-import ScrollToTop from "./ScrollToTop"; 
 import logo from "../img/runje-logo.svg";
 
 const Footer = () => {
   const location = useLocation();
+
+  // Funkcija za "Natrag na vrh" gumb
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   if (location.pathname === "/signin") {
     return null;
@@ -36,7 +43,7 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Treći stupac - KONTAKT PODACI (Ovdje smo dodali tvoje info) */}
+              {/* Treći stupac - KONTAKT PODACI */}
               <div className="col-md-4">
                 <h4>Kontakt</h4>
                 <ul className="list-unstyled footer-contact-info">
@@ -46,20 +53,20 @@ const Footer = () => {
                   </li>
                   <li className="mb-2">
                     <i className="bi bi-telephone-fill me-2 text-gold"></i>
-                    <a href="tel:+385917394888" style={{color: 'inherit', textDecoration: 'none'}}>
-                        (+385) 91 739 4888
+                    <a href="tel:+385917394888" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      (+385) 91 739 4888
                     </a>
                   </li>
                   <li className="mb-2">
                     <i className="bi bi-envelope-fill me-2 text-gold"></i>
-                    <a href="mailto:jelena_bukovac@hotmail.com" style={{color: 'inherit', textDecoration: 'none'}}>
-                        jelena_bukovac@hotmail.com
+                    <a href="mailto:jelena_bukovac@hotmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      jelena_bukovac@hotmail.com
                     </a>
                   </li>
                   <li>
                     <i className="bi bi-whatsapp me-2 text-gold"></i>
-                    <a href="https://wa.me/385917394888" target="_blank" rel="noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>
-                        WhatsApp podrška
+                    <a href="https://wa.me/385917394888" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      WhatsApp podrška
                     </a>
                   </li>
                 </ul>
@@ -71,19 +78,19 @@ const Footer = () => {
           <div className="col-md-4 text-md-end">
             <img src={logo} alt="Runje Logo" style={{ height: "80px", marginBottom: "20px" }} />
             <h4>Pridružite nam se.</h4>
-           
           </div>
         </div>
 
         <div className="row mt-5 align-items-center">
-            <div className="col-md-6">
-                <p className="text-white-50 small mb-0">© {new Date().getFullYear()} Runje Automobili. Sva prava pridržana.</p>
-            </div>
-            <div className="col-md-6 text-end">
-                <button className="btn btn-outline-warning btn-sm" onClick={ScrollToTop}>
-                  NATRAG NA VRH
-                </button>
-            </div>
+          <div className="col-md-6">
+            <p className="text-white-50 small mb-0">© {new Date().getFullYear()} Runje Automobili. Sva prava pridržana.</p>
+          </div>
+          <div className="col-md-6 text-end">
+            {/* Ovdje sada pozivamo lokalnu funkciju handleBackToTop */}
+            <button className="btn btn-outline-warning btn-sm" onClick={handleBackToTop}>
+              NATRAG NA VRH
+            </button>
+          </div>
         </div>
       </div>
     </footer>

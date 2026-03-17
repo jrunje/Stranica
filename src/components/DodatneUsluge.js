@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // 1. Dodajemo Link import
+import { Link } from 'react-router-dom';
 import slikaUvoz from '../img/uvoz-vozila.jpg';
 import slikaOtkup from '../img/otkup-vozila.jpg';
 
@@ -13,7 +13,7 @@ const DodatneUsluge = () => {
 
         <div className="row g-5"> 
           
-          {/* 1. Uvoz Vozila - cijela kartica je sada link */}
+          {/* 1. Uvoz Vozila - cijela kartica je link */}
           <div className="col-md-6">
             <Link to="/uvoz-vozila" className="text-decoration-none text-dark">
               <div className="usluga-card h-100 border-0 shadow-sm">
@@ -34,7 +34,7 @@ const DodatneUsluge = () => {
             </Link>
           </div>
 
-          {/* 2. Otkup Vozila - cijela kartica je sada link */}
+          {/* 2. Otkup Vozila - cijela kartica je link */}
           <div className="col-md-6">
             <Link to="/otkup-vozila" className="text-decoration-none text-dark">
               <div className="usluga-card h-100 border-0 shadow-sm">

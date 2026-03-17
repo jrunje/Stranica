@@ -173,7 +173,7 @@ footer .btn-outline-warning:hover {
     left: 50%;
     transform: translate(-50%, 50%);
     width: 100%;
-    max-width: 1320px; /* Mora biti isto kao container gumba */
+    max-width: 1320px;
     padding-left: 15px; /* Standardni Bootstrap razmak */
     padding-right: 15px;
     z-index: 20;
@@ -183,7 +183,7 @@ footer .btn-outline-warning:hover {
 /* --- SEKCIJA ISPOD (Fizički preklop) --- */
 .naslovnica-wrapper .swiper-section-top {
     background-color: #000;
-    /* Negativni margin od -5px prisilno penje crnu sekciju "preko" ruba slike */
+    /* Negativni margin od -5px penje crnu sekciju "preko" ruba slike */
     margin-top: -15px; 
     padding-top: 220px;
     position: relative;
@@ -193,7 +193,7 @@ footer .btn-outline-warning:hover {
     margin-bottom: 0;
     padding-bottom: 10px; /* Smanjeno da se približi bijeloj sekciji */
 }
-/* Dodatno: stilizacija samog naslova da izgleda čišće */
+/* Dodatno: stilizacija naslova da izgleda čišće */
 .swiper-section-top h2 {
     margin-bottom: 40px;
     font-weight: 800;
@@ -223,14 +223,14 @@ footer .btn-outline-warning:hover {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #000; /* Ova linija će "ubiti" bilo kakav bijeli pixel na spoju */
+    background-color: #000; 
 }
 
 .letter-spacing-2 {
   letter-spacing: 2px;
 }
 
-/* --- OSTATAK STILOVA (Netaknuto) --- */
+/* --- OSTATAK STILOVA*/
 .swiper-container-wrapper {
   background-color: #0c0c0c;
   padding-bottom: 60px;
@@ -298,7 +298,6 @@ footer .btn-outline-warning:hover {
 }
 
 /* Bijela sekcija ispod - Dodatne Usluge */
-/* Koristimo susjedni selektor (+) da budemo sigurni da gađamo pravu stvar */
 .naslovnica-wrapper .swiper-section-top + div,
 .naslovnica-wrapper .dodatne-usluge-section {
     background-color: #fff;
@@ -378,7 +377,7 @@ footer .btn-outline-warning:hover {
     height: auto;
     min-height: 450px;
     padding: 60px 0 40px 0;
-    display: block; /* Vraćamo u normalan tok */
+    display: block;
   }
 
   .naslovnica-wrapper .hero-section h1 {
@@ -397,18 +396,18 @@ footer .btn-outline-warning:hover {
     margin: 0 auto; /* Centriramo gumb */
   }
 
-  /* 2. Filter više ne lebdi nego ide ispod slike */
+  /* 2. Filter */
   .naslovnica-wrapper .filter-absolute-wrapper {
-    position: relative; /* Više nije absolute! */
+    position: relative; 
     transform: none;
     left: 0;
-    margin-top: -20px; /* Mali preklop za ljepši izgled */
+    margin-top: -20px; /* preklop za ljepši izgled */
     padding: 0 15px;
   }
 
   /* 3. Razmak za naslov sekcije ispod */
   .naslovnica-wrapper .swiper-section-top {
-    padding-top: 40px; /* Na mobitelu nam ne treba 200px razmaka */
+    padding-top: 40px; 
   }
 
   .naslovnica-wrapper .swiper-section-top h2 {

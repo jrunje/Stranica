@@ -1,6 +1,4 @@
-/* ==========================================
-   1. OSNOVA I HERO PREKLAPANJE (Usklađeno s Jamstvom)
-   ========================================== */
+/* 1. OSNOVA I HERO PREKLAPANJE */
 .o-nama-page-wrapper {
     background-color: #000;
     min-height: 100vh;
@@ -9,18 +7,16 @@
 .about-content-card {
     background-color: #111;
     border: 1px solid #222;
-    padding: 60px; /* Isto kao u jamstvu */
+    padding: 60px;
     border-radius: 15px;
-    margin-top: -80px; /* Isto preklapanje */
+    margin-top: -80px;
     margin-bottom: 30px; 
     position: relative;
     z-index: 10;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
-/* ==========================================
-   2. GALERIJA (Ispod teksta, ista širina)
-   ========================================= */
+/*2. GALERIJA (Ispod teksta, ista širina)*/
 .about-gallery-full-width {
     width: 100%;
     margin-bottom: 80px;
@@ -50,9 +46,7 @@
     background: #ffc107 !important;
 }
 
-/* ==========================================
-   3. WP SADRŽAJ (Usklađeno s Jamstvom)
-   ========================================== */
+/* 3. WP SADRŽAJ*/
 .wp-about-render {
     color: #ffffff; 
     line-height: 1.8;
@@ -89,9 +83,7 @@
     color: #ffc107;
 }
 
-/* ==========================================
-   4. GUMBI
-   ========================================== */
+/*4. GUMBI*/
 .contact-buttons-wrapper {
     border-top: 1px solid #222;
     padding-top: 30px;
@@ -122,9 +114,7 @@
     align-items: center;
 }
 
-/* ==========================================
-   5. RESPONZIVNOST (Usklađeno s Jamstvom)
-   ========================================== */
+/*5. RESPONZIVNOST*/
 @media (max-width: 991px) {
     .about-swiper-horizontal { height: 450px; }
 }

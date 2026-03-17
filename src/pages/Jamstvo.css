@@ -7,13 +7,13 @@
 }
 
 .jamstvo-content-card {
-    background-color: #111; /* Zadržavamo tamnu karticu, ona je OK */
+    background-color: #111; 
     border: 1px solid #222;
     padding: 60px;
     border-radius: 15px;
     
-    /* POPRAVAK: Smanjujemo negativni margin da se spusti sadržaj */
-    /* Od `-200px` spuštamo ga na `-80px` - ovo bi trebalo biti "za dlaku" bolje */
+   
+    /*spustanje sadrzaja */
     margin-top: -80px; 
     
     position: relative;
@@ -24,23 +24,23 @@
 /* Sprječava da kartica pobjegne preblizu dnu na malim ekranima */
 .jamstvo-content-card, 
 .about-content-card {
-    /* Povećavamo donji razmak za bolju preglednost */
+    /* Povećavan donji razmak za bolju preglednost */
     margin-bottom: 80px; 
 }
 /* ==========================================
    2. WP CONTENT RENDERER (Popravak vidljivosti teksta)
    ========================================== */
 .wp-content-render {
-    /* POPRAVAK: Povećavamo svjetlinu teksta sa `#eee` na čistu bijelu `#ffffff` */
+   
     color: #ffffff; 
     line-height: 1.8;
     font-size: 1.15rem;
 }
 
-/* Naslovi unutar teksta (Popravak) */
+/* Naslovi unutar teksta */
 .wp-content-render h2, 
 .wp-content-render h3 {
-    /* Pojačavamo kontrast zlatne boje */
+   
     color: #ffc107; 
     font-weight: 800;
     text-transform: uppercase;
@@ -48,9 +48,9 @@
     margin-bottom: 20px;
 }
 
-/* Uklanja plavu boju sa svih linkova u članku (uključujući mail) (Popravak) */
+/* Uklanja plavu boju sa svih linkova u članku*/
 .wp-content-render a {
-    /* POPRAVAK: Prisilno stavljamo bijelu boju i ovdje */
+    /*Prisilno stavljamo bijelu boju ovdje */
     color: #ffffff !important; 
     text-decoration: none;
     transition: 0.3s;

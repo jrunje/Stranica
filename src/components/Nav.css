@@ -7,7 +7,7 @@
 
 /* Stil za veći logo koji se stapa */
 .navbar-logo {
-    height: 100px; /* Povećano s 45px na 80px */
+    height: 100px;
     width: auto;
     transition: transform 0.3s ease, filter 0.3s ease;
     padding: 5px 0;
@@ -57,7 +57,7 @@
     background-color: #d4af37 !important;
     color: #000 !important;
 }
-/* Popravak za dropdown strelicu - ponekad Bootstrap doda marginu na nju */
+/* Popravak za dropdown strelicu */
 .custom-navbar .dropdown-toggle::after {
     margin-left: 0.5rem;
 }
@@ -69,7 +69,7 @@
     margin: 0;
 }
 
-/* Ujednačavamo vertikalno poravnanje za sve stavke */
+/* vertikalno poravnanje za sve stavke */
 .custom-navbar .navbar-nav {
     display: flex;
     align-items: center;
@@ -84,7 +84,7 @@
     transform: scale(1.2);
     color: #fff !important;
 }
-/* Poseban tretman za WhatsApp da ostane na kraju s većim razmakom */
+/* WhatsApp da ostane na kraju s većim razmakom */
 .custom-navbar .whatsapp-link {
     margin-left: 1.5rem;
     padding: 0;

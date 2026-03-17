@@ -13,7 +13,7 @@ const OtkupVozila = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Dohvaćamo stranicu Otkup vozila (ID 2394)
+    // Dohvaćamo stranicu Otkup vozila
     fetch(`${BASE_URL}pages/2394?acf_format=standard&_embed`)
       .then((res) => res.json())
       .then((data) => {
@@ -44,7 +44,7 @@ const OtkupVozila = () => {
 
               <hr className="border-secondary my-5" />
 
-              {/* SEKCIJA S GUMBIMA (Kao na slici b2ea6d) */}
+              {/* SEKCIJA S GUMBIMA*/}
               <div className="cta-section text-center text-md-start">
                 <h3 className="text-gold mb-4">Želite prodati svoje vozilo?</h3>
                 <p className="text-white-50 mb-5">

@@ -13,7 +13,7 @@ const UvozVozila = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Dohvaćamo stranicu Uvoz vozila (ID 2391)
+    // Dohvaćamo stranicu Uvoz vozila
     fetch(`${BASE_URL}pages/2391?acf_format=standard&_embed`)
       .then((res) => res.json())
       .then((data) => {

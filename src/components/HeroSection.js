@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = ({ stranica, fallback, tip }) => {
-  // 1. Sigurnija logika za dohvat slike
+  // dohvat slike
   // Provjeravamo embedded (WP Featured Image), pa ACF polje ako postoji, pa fallback
   const wpImg = stranica?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
   const acfImg = stranica?.acf?.hero_image; 
   
-  // Ako je sve prazno, koristi ovaj default link ili tvoj fallback
-  const selectedImg = wpImg || acfImg || fallback || "https://tvoja-domena.com/default-hero.jpg";
+  // Ako je sve prazno, koristi ovaj default (
+  const selectedImg = wpImg || acfImg || fallback || "https://placehold.co/1200x800";
 
-  // Provjeravamo tip stranice
+  // Provjera tipa stranice
   const isSimpleHero = tip === 'jamstvo' || tip === 'single' || tip === 'o-nama';
 
   // Dinamički stilovi ovisno o tipu heroja
@@ -20,7 +20,7 @@ const HeroSection = ({ stranica, fallback, tip }) => {
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     width: '100%',
-    // Ako je Jamstvo/O Nama, dajemo mu barem 400px visine da se slika vidi
+    //  dajemo mu barem 400px visine da se slika vidi
     minHeight: isSimpleHero ? '400px' : '85vh',
     display: 'flex',
     alignItems: 'center',
@@ -44,7 +44,7 @@ const HeroSection = ({ stranica, fallback, tip }) => {
               }
             </h1>
             
-            {/* Podnaslov i Gumb - Prikazuju se samo na naslovnici (kad NIJE isSimpleHero) */}
+            {/* Podnaslov i Gumb*/}
             {!isSimpleHero && (
               <>
                 <p className="fs-4 mb-4 hero-subtitle">

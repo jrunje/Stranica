@@ -6,7 +6,6 @@ import Loader from "../components/Loader";
 import Yoast from "../components/Yoast";
 import "./VoziloSingle.css";
 
-// Swiper stilovi
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
@@ -29,7 +28,7 @@ const VoziloSingle = () => {
           const v = data[0];
           setVozilo(v);
 
-          // IZVLAČENJE SLIKA IZ TVOG API-JA
+          // IZVLAČENJE SLIKA IZ api-ja
           const loadedImages = [];
           
           // 1. Provjera galerije unutar galerija[0]

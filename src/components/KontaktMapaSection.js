@@ -10,7 +10,7 @@ const KontaktMapaSection = () => {
             <h2 className="display-5 fw-bold mb-4">Posjetite nas</h2>
             
             <div className="mb-4">
-              {/* Novi podnaslov umjesto broja mobitela */}
+            
               <h5 className="text-gold fw-bold mb-3 text-uppercase letter-spacing-1">
                 Radno vrijeme:
               </h5>
@@ -47,7 +47,7 @@ const KontaktMapaSection = () => {
               </div>
             </div>
 
-            {/* Lokacija ostaje ispod, kao dodatna informacija */}
+            {/* Lokacija ispod, kao dodatna informacija */}
             <p className="text-muted small mt-3">
               <i className="bi bi-geo-alt-fill text-gold me-2"></i> 
               Koludrovac 8, Kaštel Štafilić

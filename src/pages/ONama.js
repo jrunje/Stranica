@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import "./ONama.css";
 
-// Importi slika
 import onama1 from '../img/onama-1.png'; 
 import onama2 from '../img/onama-2.png';
 import onama3 from '../img/onama-3.png';
@@ -54,7 +53,7 @@ const ONama = () => {
 
       <div className="container py-5">
         <div className="row justify-content-center">
-          <div className="col-lg-12"> {/* Promijenjeno na 12 za punu širinu */}
+          <div className="col-lg-12"> 
             
             {/* KARTICA S TEKSTOM */}
             <div className="about-content-card">

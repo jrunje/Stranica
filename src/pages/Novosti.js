@@ -17,7 +17,7 @@ const Novosti = () => {
 
   useEffect(() => {
     setLoading(true);
-    // Fiksirali smo author=11
+  
     let url = `${BASE_URL}posts?_embed&per_page=${per_page}&page=${currentPage + 1}&author=11`;
 
     fetch(url)

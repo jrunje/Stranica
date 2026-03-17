@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react"; // Dodan useMemo
 import { useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
 import ReactPaginate from "react-paginate";
-import ScrollToTop from "../components/ScrollToTop";
+// Maknut import ScrollToTop jer smo ga stavili u App.js da radi automatski
 import { Helmet } from "react-helmet-async";
 import VehicleCard from "../components/VehicleCard";
 import "./Vozila.css";
@@ -11,8 +11,10 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Vozila = () => {
   const location = useLocation();
-  // Pomoćna funkcija za čitanje parametara iz URL-a
-  const queryParams = new URLSearchParams(location.search);
+  
+  // POPRAVAK: QueryParams definiramo unutar useMemo da izbjegnemo "initialization" greške
+  const queryParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
+
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -27,7 +29,7 @@ const Vozila = () => {
 
   const [statusFilter, setStatusFilter] = useState("all");
 
- // POSTAVI POČETNO STANJE FILTERA NA TEMELJU URL PARAMETARA
+  // Filteri
   const [filters, setFilters] = useState({
     marka: queryParams.get("marka") || "",
     "model-vozila": queryParams.get("model") || "",
@@ -40,6 +42,7 @@ const Vozila = () => {
     maxSnaga: ""
   });
 
+  // Dohvat opcija za filtere
   useEffect(() => {
     const fetchOptions = async () => {
       try {
@@ -65,6 +68,7 @@ const Vozila = () => {
     fetchOptions();
   }, []);
 
+  // Dohvat vozila
   useEffect(() => {
     setLoading(true);
     fetch(`${BASE_URL}vozila?_embed&per_page=100`)
@@ -82,37 +86,34 @@ const Vozila = () => {
   };
 
   const resetFilters = () => {
-  setFilters({
-    marka: "",
-    "model-vozila": "",
-    mjenjac: "",
-    "vrsta-motora": "",
-    boja: "",
-    maxCijena: "",
-    maxKm: "",
-    godinaOd: "",
-    maxSnaga: ""
-  });
-  setStatusFilter("all"); // Resetira i gornje gumbe na "Sva vozila"
-  setCurrentPage(0);
-};
+    setFilters({
+      marka: "",
+      "model-vozila": "",
+      mjenjac: "",
+      "vrsta-motora": "",
+      boja: "",
+      maxCijena: "",
+      maxKm: "",
+      godinaOd: "",
+      maxSnaga: ""
+    });
+    setStatusFilter("all");
+    setCurrentPage(0);
+  };
 
   const akcijaKat = kategorijeVozila.find(k => k.slug === "akcija");
 
   const filteredVehicles = vehicles.filter(v => {
     const { acf } = v;
+    if (!acf) return false; // Sigurnosna provjera ako ACF fali
     
-    // Status filter (Gumbi iznad)
     const matchStatus = statusFilter === "all" || v["kategorija-vozila"]?.includes(akcijaKat?.id);
-
-    // Sidebar filteri (Taksonomije)
     const matchMarka = !filters.marka || v.marka?.includes(parseInt(filters.marka));
     const matchModel = !filters["model-vozila"] || v["model-vozila"]?.includes(parseInt(filters["model-vozila"]));
     const matchMjenjac = !filters.mjenjac || v.mjenjac?.includes(parseInt(filters.mjenjac));
     const matchMotor = !filters["vrsta-motora"] || v["vrsta-motora"]?.includes(parseInt(filters["vrsta-motora"]));
     const matchBoja = !filters.boja || v.boja?.includes(parseInt(filters.boja));
 
-    // ACF filteri
     const matchCijena = !filters.maxCijena || parseInt(acf.cijena) <= parseInt(filters.maxCijena);
     const matchKm = !filters.maxKm || parseInt(acf.kilometraza) <= parseInt(filters.maxKm);
     const matchGodina = !filters.godinaOd || parseInt(acf.godina) >= parseInt(filters.godinaOd);
@@ -123,6 +124,12 @@ const Vozila = () => {
 
   const pageCount = Math.ceil(filteredVehicles.length / 6);
 
+  // Funkcija za skok na vrh prilikom paginacije (smooth)
+  const handlePageChange = (e) => {
+    setCurrentPage(e.selected);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="vozila-page-wrapper bg-black">
       <Helmet><title>Ponuda Vozila | Runje Automobili</title></Helmet>
@@ -131,7 +138,6 @@ const Vozila = () => {
       <div className="container py-5">
         <h1 className="main-title text-white mb-5">NAŠA PONUDA</h1>
 
-        {/* RED 1: GUMBI IZNAD SVEGA */}
         <div className="row mb-4">
           <div className="col-12">
             <div className="status-toggle-container">
@@ -152,7 +158,6 @@ const Vozila = () => {
         </div>
         
         <div className="row">
-          {/* SIDEBAR */}
           <div className="col-lg-3">
             <aside className="filter-sidebar p-4 text-white">
               <h5 className="text-warning fw-bold mb-4">PRETRAGA</h5>
@@ -218,17 +223,12 @@ const Vozila = () => {
                 </div>
               </div>
 
-              <button 
-  className="btn btn-outline-light w-100 fw-bold mt-3" 
-  onClick={resetFilters}
-  style={{ borderColor: '#333', fontSize: '0.9rem' }}
->
-  RESETIRAJ FILTERE
-</button>
+              <button className="btn btn-outline-light w-100 fw-bold mt-3" onClick={resetFilters} style={{ borderColor: '#333', fontSize: '0.9rem' }}>
+                RESETIRAJ FILTERE
+              </button>
             </aside>
           </div>
 
-          {/* KARTICE */}
           <div className="col-lg-9">
             <div className="row g-4">
               {filteredVehicles.length > 0 ? (
@@ -247,7 +247,7 @@ const Vozila = () => {
                 previousLabel={"←"}
                 nextLabel={"→"}
                 pageCount={pageCount}
-                onPageChange={(e) => { setCurrentPage(e.selected); ScrollToTop(); }}
+                onPageChange={handlePageChange}
                 containerClassName={"pagination-custom"}
                 activeClassName={"active"}
                 forcePage={currentPage}

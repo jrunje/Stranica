@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NovostiCard = ({ post }) => {
   const image = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-  // Formatiramo datum
+  // Formatiranje datuma
   const formattedDate = new Date(post.date).toLocaleDateString("hr-HR", {
     day: "2-digit",
     month: "2-digit",

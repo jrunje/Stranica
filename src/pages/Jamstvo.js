@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // 1. Dodaj ovaj import
+import { Link } from 'react-router-dom'; 
 import Loader from "../components/Loader";
 import HeroSection from "../components/HeroSection";
 import "./Jamstvo.css";
@@ -39,7 +39,6 @@ const Jamstvo = () => {
               />
               
               <div className="contact-buttons-wrapper d-flex flex-wrap gap-3 mt-5">
-                {/* 2. Promijeni 'a href' u 'Link to' */}
                 <Link to="/kontakt" className="btn btn-gold-rounded">
                   <i className="bi bi-envelope-at me-2"></i> Pošalji upit
                 </Link>

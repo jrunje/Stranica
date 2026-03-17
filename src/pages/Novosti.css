@@ -19,7 +19,7 @@
     margin-top: 15px;
 }
 
-/* 2. STIL KARTICE (Ovdje je ključ za gumbe) */
+/* 2. STIL KARTICE*/
 .novosti-card {
     background-color: #111;
     border: 1px solid #222;
@@ -76,7 +76,7 @@
     font-size: 0.95rem;
 }
 
-/* PAGINACIJA - Prilagođena tvom stilu */
+/* PAGINACIJA */
 .custom-pagination .page-link {
     background-color: #111;
     border: 1px solid #333;

@@ -22,7 +22,7 @@ const Naslovnica = () => {
         const vozilaData = await vozilaRes.json();
         setVozila(vozilaData);
 
-        // 2. Dohvaćamo podatke o naslovnici koristeći tvoj ID: 126
+        // 2. Dohvaćamo podatke o naslovnici
         const pageRes = await fetch(`${BASE_URL}pages/126?_embed&acf_format=standard`);
         const pageDataJson = await pageRes.json();
         setPageData(pageDataJson);
@@ -42,7 +42,7 @@ const Naslovnica = () => {
     <div className="bg-black min-vh-100 naslovnica-wrapper">
       <div className="hero-filter-container" style={{ position: 'relative' }}>
         
-        {/* HeroSection s ispravljenim objektom stranice */}
+        {/* HeroSection*/}
         <HeroSection 
           tip="home"
           stranica={{

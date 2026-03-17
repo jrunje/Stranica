@@ -8,7 +8,7 @@ const VehicleCard = ({ vehicle }) => {
     <div className="col-md-6 col-xl-4 mb-4">
       <div className="card h-100 gold-border-card">
         <Link to={"/vozila/" + vehicle.slug} className="position-relative">
-          {/* Dodana klasa vehicle-img-top-fixed za ujednačavanje visine slika */}
+          {/*klasa vehicle-img-top-fixed za ujednačavanje visine slika */}
           <img src={image} className="card-img-top vehicle-img-top-fixed" alt={vehicle.title.rendered} />
         </Link>
         
@@ -17,7 +17,6 @@ const VehicleCard = ({ vehicle }) => {
             <h5 className="mb-3 lh-base">{vehicle.title.rendered}</h5>
           </Link>
           
-          {/* Maknuli smo d-flex i border-top/bottom da stavke idu jedna ispod druge */}
           <div className="vehicle-card-specs">
             <span className="spec-item"><i className="bi bi-speedometer2"></i> {kilometraza} km</span>
             <span className="spec-item"><i className="bi bi-lightning-charge"></i> {snaga_motora} KS</span>
