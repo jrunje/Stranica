@@ -1,8 +1,7 @@
-import { useEffect, useState, useMemo } from "react"; // Dodan useMemo
+import { useEffect, useState, useMemo } from "react"; 
 import { useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
 import ReactPaginate from "react-paginate";
-// Maknut import ScrollToTop jer smo ga stavili u App.js da radi automatski
 import { Helmet } from "react-helmet-async";
 import VehicleCard from "../components/VehicleCard";
 import "./Vozila.css";
@@ -12,7 +11,7 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 const Vozila = () => {
   const location = useLocation();
   
-  // POPRAVAK: QueryParams definiramo unutar useMemo da izbjegnemo "initialization" greške
+  // QueryParams definiramo unutar useMemo da izbjegnemo "initialization" grešku prilikom prvog rendera, jer useLocation() vraća prazan string na početku, a mi želimo da se queryParams ažurira samo kad se promijeni location.search
   const queryParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   const [vehicles, setVehicles] = useState([]);
@@ -29,7 +28,7 @@ const Vozila = () => {
 
   const [statusFilter, setStatusFilter] = useState("all");
 
-  // Filteri
+  // Filteri - inicijalizacija iz URL-a
   const [filters, setFilters] = useState({
     marka: queryParams.get("marka") || "",
     "model-vozila": queryParams.get("model") || "",
@@ -42,7 +41,7 @@ const Vozila = () => {
     maxSnaga: ""
   });
 
-  // Dohvat opcija za filtere
+  // Dohvat opcija za filtere (Taxonomies)
   useEffect(() => {
     const fetchOptions = async () => {
       try {
@@ -68,7 +67,7 @@ const Vozila = () => {
     fetchOptions();
   }, []);
 
-  // Dohvat vozila
+  // Dohvat svih vozila s API-ja
   useEffect(() => {
     setLoading(true);
     fetch(`${BASE_URL}vozila?_embed&per_page=100`)
@@ -76,6 +75,7 @@ const Vozila = () => {
       .then(data => {
         if (Array.isArray(data)) setVehicles(data);
       })
+      .catch(err => console.error("Greška pri dohvatu vozila:", err))
       .finally(() => setLoading(false));
   }, []);
 
@@ -103,9 +103,10 @@ const Vozila = () => {
 
   const akcijaKat = kategorijeVozila.find(k => k.slug === "akcija");
 
+  // Logika filtriranja
   const filteredVehicles = vehicles.filter(v => {
     const { acf } = v;
-    if (!acf) return false; // Sigurnosna provjera ako ACF fali
+    if (!acf) return false; 
     
     const matchStatus = statusFilter === "all" || v["kategorija-vozila"]?.includes(akcijaKat?.id);
     const matchMarka = !filters.marka || v.marka?.includes(parseInt(filters.marka));
@@ -124,7 +125,6 @@ const Vozila = () => {
 
   const pageCount = Math.ceil(filteredVehicles.length / 6);
 
-  // Funkcija za skok na vrh prilikom paginacije (smooth)
   const handlePageChange = (e) => {
     setCurrentPage(e.selected);
     window.scrollTo({ top: 0, behavior: "smooth" });

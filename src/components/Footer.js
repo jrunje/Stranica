@@ -4,7 +4,7 @@ import logo from "../img/runje-logo.svg";
 const Footer = () => {
   const location = useLocation();
 
-  // Funkcija za "Natrag na vrh" gumb
+  // "Natrag na vrh" gumb
   const handleBackToTop = () => {
     window.scrollTo({
       top: 0,
@@ -86,7 +86,7 @@ const Footer = () => {
             <p className="text-white-50 small mb-0">© {new Date().getFullYear()} Runje Automobili. Sva prava pridržana.</p>
           </div>
           <div className="col-md-6 text-end">
-            {/* Ovdje sada pozivamo lokalnu funkciju handleBackToTop */}
+            {/* pozivamo lokalnu funkciju handleBackToTop */}
             <button className="btn btn-outline-warning btn-sm" onClick={handleBackToTop}>
               NATRAG NA VRH
             </button>
