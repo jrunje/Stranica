@@ -57,7 +57,23 @@
     background-color: #d4af37 !important;
     color: #000 !important;
 }
+/* Popravak za dropdown strelicu - ponekad Bootstrap doda marginu na nju */
+.custom-navbar .dropdown-toggle::after {
+    margin-left: 0.5rem;
+}
 
+.custom-navbar .navbar-nav .nav-link,
+.custom-navbar .navbar-nav .nav-item .dropdown-toggle {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin: 0;
+}
+
+/* Ujednačavamo vertikalno poravnanje za sve stavke */
+.custom-navbar .navbar-nav {
+    display: flex;
+    align-items: center;
+}
 /* --- WhatsApp --- */
 .whatsapp-icon {
     color: #d4af37;
@@ -67,6 +83,11 @@
 .whatsapp-link:hover .whatsapp-icon {
     transform: scale(1.2);
     color: #fff !important;
+}
+/* Poseban tretman za WhatsApp da ostane na kraju s većim razmakom */
+.custom-navbar .whatsapp-link {
+    margin-left: 1.5rem;
+    padding: 0;
 }
 
 /* --- Mobilni prikaz (prilagodba za veliki logo) --- */

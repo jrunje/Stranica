@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
 import ReactPaginate from "react-paginate";
 import ScrollToTop from "../components/ScrollToTop";
@@ -9,6 +10,9 @@ import "./Vozila.css";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Vozila = () => {
+  const location = useLocation();
+  // Pomoćna funkcija za čitanje parametara iz URL-a
+  const queryParams = new URLSearchParams(location.search);
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -23,15 +27,16 @@ const Vozila = () => {
 
   const [statusFilter, setStatusFilter] = useState("all");
 
+ // POSTAVI POČETNO STANJE FILTERA NA TEMELJU URL PARAMETARA
   const [filters, setFilters] = useState({
-    marka: "",
-    "model-vozila": "",
+    marka: queryParams.get("marka") || "",
+    "model-vozila": queryParams.get("model") || "",
     mjenjac: "",
     "vrsta-motora": "",
     boja: "",
-    maxCijena: "",
+    maxCijena: queryParams.get("cijena") || "",
     maxKm: "",
-    godinaOd: "",
+    godinaOd: queryParams.get("godina") || "",
     maxSnaga: ""
   });
 

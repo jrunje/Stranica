@@ -58,7 +58,7 @@ const VozilaSwiper = ({ vozila }) => {
                           </li>
                           <li>
                             <span><i className="bi bi-calendar3 me-2"></i> Godište</span>
-                            <strong>{auto.acf?.godiste || "2024"}</strong>
+                            <strong>{auto.acf?.godina || "2024"}</strong>
                           </li>
                           <li>
                             <span><i className="bi bi-fuel-pump-fill me-2"></i> Motor</span>
@@ -67,9 +67,9 @@ const VozilaSwiper = ({ vozila }) => {
                         </ul>
                       </div>
                       
-                      <Link to={`/vozilo/${auto.id}`} className="btn btn-warning w-100 fw-bold hero-btn py-2 mt-3">
-                        SAZNAJ VIŠE
-                      </Link>
+                      <Link to={`/vozila/${auto.slug}`} className="btn btn-warning w-100 fw-bold hero-btn py-2 mt-3">
+  SAZNAJ VIŠE
+</Link>
                     </div>
                   </div>
                 </div>

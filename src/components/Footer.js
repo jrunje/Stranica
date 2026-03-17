@@ -78,7 +78,7 @@ const Footer = () => {
 
         <div className="row mt-5 align-items-center">
             <div className="col-md-6">
-                <p className="text-muted small mb-0">© {new Date().getFullYear()} Runje Automobili. Sva prava pridržana.</p>
+                <p className="text-white-50 small mb-0">© {new Date().getFullYear()} Runje Automobili. Sva prava pridržana.</p>
             </div>
             <div className="col-md-6 text-end">
                 <button className="btn btn-outline-warning btn-sm" onClick={ScrollToTop}>

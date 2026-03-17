@@ -22,7 +22,7 @@ function App() {
         <Route path="/" element={<Naslovnica />} />
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/vozila" element={<Vozila />} />
-        <Route path="/vozila/:slug" element={<VoziloSingle />} />
+        <Route path="/vozila/:slug" element={<VoziloSingle />} />      
         <Route path="/jamstvo" element={<Jamstvo />} />
         <Route path="/o-nama" element={<ONama />} />
         <Route path="/uvoz-vozila" element={<UvozVozila />} />

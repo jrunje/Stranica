@@ -57,7 +57,7 @@ footer ul li {
 }
 
 footer ul li a {
-  color: #aaa;
+  color: rgba(255, 255, 255, 0.7); /* Svjetlija prozirna bijela*/
   text-decoration: none;
   transition: 0.3s;
 }
@@ -82,7 +82,7 @@ footer .btn-outline-warning:hover {
 }
 
 .footer-contact-info li {
-  color: #ccc;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -363,6 +363,7 @@ footer .btn-outline-warning:hover {
 .kontakt-mapa-section .display-5 {
   letter-spacing: -1px;
 }
+
 
 @media (max-width: 767px) {
   .kontakt-mapa-section iframe {
