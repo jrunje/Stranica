@@ -7,7 +7,7 @@
 
 /* Stil za veći logo koji se stapa */
 .navbar-logo {
-    height: 80px; /* Povećano s 45px na 80px */
+    height: 100px; /* Povećano s 45px na 80px */
     width: auto;
     transition: transform 0.3s ease, filter 0.3s ease;
     padding: 5px 0;

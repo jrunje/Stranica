@@ -11,7 +11,7 @@ const VozilaSwiper = ({ vozila }) => {
   return (
     <div className="swiper-container-wrapper py-5">
       <div className="container">
-        <h2 className="text-white text-uppercase mb-5 letter-spacing-2 text-center text-md-start">
+        <h2 className="text-white text-uppercase mt-2 mb-5 letter-spacing-2 text-center text-md-start">
           Izdvajamo <span style={{ color: '#d4af37' }}>iz ponude</span>
         </h2>
         

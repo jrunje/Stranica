@@ -13,10 +13,12 @@ import UvozVozila from "./pages/UvozVozila";
 import OtkupVozila from "./pages/OtkupVozila";
 import Novosti from "./pages/Novosti"; 
 import NovostiSingle from "./pages/NovostiSingle";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter basename={'/jrunje'}>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<Naslovnica />} />
