@@ -374,14 +374,16 @@ footer .btn-outline-warning:hover {
   
   /* 1. Smanjujemo Hero visinu i tekst da stane na ekran */
   .naslovnica-wrapper .hero-section {
-    height: auto;
-    min-height: 450px;
-    padding: 60px 0 40px 0;
+   height: auto;
+    min-height: 400px;
+    padding-top: 60px;
+    padding-bottom: 80px;
     display: block;
+   
   }
 
   .naslovnica-wrapper .hero-section h1 {
-    font-size: 2rem; /* Manji naslov */
+    font-size: 2rem;
     text-align: center;
   }
 
@@ -401,19 +403,30 @@ footer .btn-outline-warning:hover {
     position: relative; 
     transform: none;
     left: 0;
-    margin-top: -20px; /* preklop za ljepši izgled */
+    margin-top: -60px; /* Preklop preko hero slike */
     padding: 0 15px;
+    z-index: 20;
   }
 
   /* 3. Razmak za naslov sekcije ispod */
   .naslovnica-wrapper .swiper-section-top {
-    padding-top: 40px; 
+    
+  padding-top: 60px; 
+    margin-top: 0;
+    box-shadow: none;
+    position: relative;
+    z-index: 5;
   }
 
   .naslovnica-wrapper .swiper-section-top h2 {
     font-size: 1.5rem;
     text-align: center;
+
   }
+  .hero-filter-container {
+    background-color: #000;
+    overflow: hidden; /* Reže ostatke paddinga */
+}
 }
 .filter-container {
  margin-top: 0;
